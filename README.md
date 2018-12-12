@@ -1,6 +1,12 @@
 # docker-install-cli
 The Docker installation script by command line
 
+### How to check os Version in Linux?
+Check `PRETTY_NAME` from:
+```bash
+cat /etc/os-release
+```
+
 ### Installation scripts listing
 **Debian 8 Jessie or newer**
 ```bash
