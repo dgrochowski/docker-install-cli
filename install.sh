@@ -13,8 +13,9 @@ fi
 
 source "./releases/$OPERATING_SYSTEM.sh"
 
-OS_RELEASE=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
+OS_RELEASE=$(lsb_release -si)
 OS_RELEASE=${OS_RELEASE,,}
+OS_RELEASE=${OS_RELEASE//\"}
 
 # Fetch latest docker-compose version if not forced in config
 if [ -z $DOCKER_COMPOSE_VERSION ] || [ $DOCKER_COMPOSE_VERSION == 'latest' ] ; then
@@ -46,7 +47,7 @@ sudo apt-get remove docker docker-engine docker.io -y
 sudo apt-get purge docker-ce -y
 
 # Install Docker CE
-curl -fsSL https://download.docker.com/linux/$OS_RELEASE/gpg | sudo apt-key add -
+curl -fsSL "https://download.docker.com/linux/$OS_RELEASE/gpg" | sudo apt-key add -
 sudo add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/$OS_RELEASE \
    $OPERATING_SYSTEM \
@@ -57,14 +58,23 @@ sudo apt-get install docker-ce -y
 # Add privileges
 sudo groupadd docker
 sudo usermod -aG docker $USER
-sudo newgrp docker
 
 # Protect against incorrect state
 sudo rm -rf /var/lib/docker
 sudo systemctl restart docker
 
-# @TODO: prompt is not showing
+# Relog to get an access to the 'docker' group
+printf "\n################################################\n"
+printf "Docker and docker-compose installation complete."
+printf "\n################################################\n"
+
+if [[ ! $(groups | grep docker) ]] ; then
+    printf "\nPlease sign out and sign in to reload groups.\n"
+    exit
+fi
+
 # Ask about run test.sh
+printf "\n"
 read -p "Would you like to test docker now? [y/n]: " -n 1 -r
 if [[ $REPLY =~ ^[Yy]$ ]] ; then
     source ./test.sh

@@ -1,21 +1,24 @@
 # docker-install-cli
-The Docker and docker-compose installation script by command line
+The Docker and docker-compose installation script for Linux by command line
 
 Supported Linux releases:
-- jessie
-- wheezy
-- trusty
-- xenial
+- Debian [jessie](https://www.debian.org/releases/jessie/)
+- Debian [wheezy](https://www.debian.org/releases/wheezy/)
+- Ubuntu [trusty](http://releases.ubuntu.com/14.04/)
+- Ubuntu [xenial](http://releases.ubuntu.com/16.04/)
+- Ubuntu [bionic](http://releases.ubuntu.com/18.04/)
 
 ## Installation script
 ### Please check `config.sh` before install
-__**Sign out & sign in may be required after installation!**__
+
+- super user privileges (**sudo**) is required to run this script properly
+- sign out & sign in may be required after installation!
 
 ```bash
-bash install.sh
+./install.sh
 ```
 
 ## Simple test after installation
 ```bash
-bash test.sh
+./test.sh
 ```
