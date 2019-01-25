@@ -2,8 +2,9 @@
 The Docker and docker-compose installation script for Linux by command line
 
 Supported Linux releases:
-- Debian [jessie](https://www.debian.org/releases/jessie/)
 - Debian [wheezy](https://www.debian.org/releases/wheezy/)
+- Debian [jessie](https://www.debian.org/releases/jessie/)
+- Debian [stretch](https://www.debian.org/releases/stretch/)
 - Ubuntu [trusty](http://releases.ubuntu.com/14.04/)
 - Ubuntu [xenial](http://releases.ubuntu.com/16.04/)
 - Ubuntu [bionic](http://releases.ubuntu.com/18.04/)
